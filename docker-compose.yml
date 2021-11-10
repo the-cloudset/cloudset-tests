@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  php:
+    build: ./php
+    depends_on:
+      - hub
+    volumes:
+      - .:/usr/src/behat
+    working_dir: /usr/src/behat
+    networks:
+      cloudset:
+
+  hub:
+    image: selenium/hub:3.141.59
+    depends_on:
+      - firefox
+      - chrome
+    networks:
+      cloudset:
+
+  chrome:
+    image: 'selenium/node-chrome:3.141.59'
+    environment:
+      HUB_HOST: hub
+      HUB_PORT: 4444
+    shm_size: '2gb'
+    networks:
+      cloudset:
+
+networks:
+  cloudset:

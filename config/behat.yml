@@ -1,0 +1,26 @@
+default:
+    extensions:
+        Behat\MinkExtension:
+            base_url: https://thecloudset.com
+            sessions:
+                default:
+                    selenium2:
+                        wd_host: http://hub:4444/wd/hub
+                        browser: chrome
+                        capabilities:
+                            extra_capabilities:
+                                "goog:chromeOptions":
+                                    w3c: false
+                            browserName: "chrome"
+                            browser: "chrome"
+                            chrome:
+                                switches: ['--disable-gpu', '--window-size=1280,1600']
+                            marionette: true
+                        #capabilities: {"browserName": "firefox", "browser": "firefox", 'firefox': {}, "marionette": true}
+        FriendsOfBehat\MinkDebugExtension:
+            directory: logs
+
+    suites:
+        cloudset:
+            contexts:
+                - FeatureContext
