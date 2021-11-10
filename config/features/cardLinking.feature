@@ -1,7 +1,7 @@
-Feature: Order History
-  In order to view my order history
+Feature: Manage bank cards
+  In order to manage my bank cards
   As a website user
-  I need to be able to go to support page
+  I need to be able add, view and delete bank cards
 
   Background:
     Given I am logged in as Client

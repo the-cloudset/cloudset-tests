@@ -1,0 +1,7 @@
+services:
+  php:
+    environment:
+        # Логин для авторизации в thecloudset.com
+        - BEHAT_USER_LOGIN=test@thecloudset.com
+        # Пароль для авторизации в thecloudset.com
+        - BEHAT_USER_PASSWORD=test

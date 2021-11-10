@@ -1,8 +1,9 @@
-# codeception
-/vendor
-/tests/_output
-/tests/_support/_generated
+# local configuration files
+docker-compose.override.yml
 
+# IDE files
 .vscode
-.env.override
 .idea
+
+# composer
+/vendor

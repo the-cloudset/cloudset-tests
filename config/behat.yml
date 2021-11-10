@@ -16,11 +16,11 @@ default:
                             chrome:
                                 switches: ['--disable-gpu', '--window-size=1280,1600']
                             marionette: true
-                        #capabilities: {"browserName": "firefox", "browser": "firefox", 'firefox': {}, "marionette": true}
+
         FriendsOfBehat\MinkDebugExtension:
             directory: logs
 
     suites:
         cloudset:
             contexts:
-                - FeatureContext
+                - FeatureContext:
