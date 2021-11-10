@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   php:
-    build: ./php
+    build: ./docker/php
     depends_on:
       - hub
     volumes:
@@ -14,7 +14,6 @@ services:
   hub:
     image: selenium/hub:3.141.59
     depends_on:
-      - firefox
       - chrome
     networks:
       cloudset:
