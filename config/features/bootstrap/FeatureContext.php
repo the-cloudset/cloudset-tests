@@ -12,8 +12,8 @@ class FeatureContext extends MinkContext
 
     public function __construct()
     {
-        $this->login = $_ENV['BEHAT_USER_LOGIN'];
-        $this->password = $_ENV['BEHAT_USER_PASSWORD'];
+        $this->login = $_ENV['CLOUDSET_USER_LOGIN'];
+        $this->password = $_ENV['CLOUDSET_USER_PASSWORD'];
     }
 
     /**
