@@ -8,7 +8,7 @@ use Behat\MinkExtension\Context\MinkContext;
 class FeatureContext extends MinkContext
 {
     private const BLOCKS_SELECTORS = [
-        'profile menu' => '.userpage-aside__menu',
+        'profile menu' => '.userpage__aside',
     ];
 
     /**
@@ -17,12 +17,36 @@ class FeatureContext extends MinkContext
     public function iFollowInTheBlock($link, $blockName)
     {
         $link = $this->fixStepArgument($link);
-        $blockName = $this->fixStepArgument($blockName);
+        $blockSelector = $this->getBlockSelector($blockName);
+
+        $this->getSession()->getPage()->find('css', $blockSelector)->clickLink($link);
+    }
+
+    /**
+     * @Then I should see :text in the :blockName
+     */
+    public function iShouldSeeInTheBlock($text, $blockName)
+    {
+        $text = $this->fixStepArgument($text);
+        $blockSelector = $this->getBlockSelector($blockName);
+
+        $this->assertSession()->elementTextContains('css', $blockSelector, $text);
+    }
+
+    /**
+     * Get block selector based on name of block
+     *
+     * @return string
+     *
+     * @throws InvalidArgumentException
+     */
+    private function getBlockSelector(string $blockName): string
+    {
         $blockSelector = self::BLOCKS_SELECTORS[$blockName] ?? null;
         if ($blockSelector === null) {
             throw new InvalidArgumentException('Unknown block name: ' . $blockName);
         }
 
-        $this->getSession()->getPage()->find('css', $blockSelector)->clickLink($link);
+        return $blockSelector;
     }
 }
