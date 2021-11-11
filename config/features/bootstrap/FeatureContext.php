@@ -7,14 +7,22 @@ use Behat\MinkExtension\Context\MinkContext;
  */
 class FeatureContext extends MinkContext
 {
+    private const BLOCKS_SELECTORS = [
+        'profile menu' => '.userpage-aside__menu',
+    ];
+
     /**
-     * @When I follow :link in the :element element
+     * @When I follow :link in the :blockName
      */
-    public function iFollowInTheElement($link, $element)
+    public function iFollowInTheBlock($link, $blockName)
     {
         $link = $this->fixStepArgument($link);
-        $element = $this->fixStepArgument($element);
+        $blockName = $this->fixStepArgument($blockName);
+        $blockSelector = self::BLOCKS_SELECTORS[$blockName] ?? null;
+        if ($blockSelector === null) {
+            throw new InvalidArgumentException('Unknown block name: ' . $blockName);
+        }
 
-        $this->getSession()->getPage()->find('css', $element)->clickLink($link);
+        $this->getSession()->getPage()->find('css', $blockSelector)->clickLink($link);
     }
 }
