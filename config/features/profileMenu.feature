@@ -4,7 +4,7 @@ Feature: Profile menu
   I need to be able to navigate by profile menu
 
   Background:
-    Given I am logged in as Client
+    Given I am logged in as "client"
     Given I am on "/profile/"
 
   Scenario: Go to order history
@@ -26,7 +26,3 @@ Feature: Profile menu
   Scenario: Go to bonus program
     When I follow "бонусная программа" in the ".userpage-aside__menu" element
     Then I should see "бонусная программа" in the ".userpage__main" element
-
-  Scenario: Go to subscription
-    When I follow "подписка" in the ".userpage-aside__menu" element
-    Then I should see "подписка" in the ".userpage__main" element

@@ -23,4 +23,5 @@ default:
     suites:
         cloudset:
             contexts:
-                - FeatureContext:
+                - FeatureContext
+                - CloudsetUsers

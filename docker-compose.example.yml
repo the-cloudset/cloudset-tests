@@ -2,6 +2,10 @@ services:
   php:
     environment:
         # Логин для авторизации в thecloudset.com
-        - CLOUDSET_USER_LOGIN=test@thecloudset.com
-        # Пароль для авторизации в thecloudset.com
-        - CLOUDSET_USER_PASSWORD=test
+        - >
+            CLOUDSET_USERS=[
+                {
+                    "client": { "login": "test@thecloudset.com", "password": "test" },
+                    "admin":  { "login": "fake@thecloudset.com", "password": "fake" }
+                }
+            ]

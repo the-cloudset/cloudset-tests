@@ -7,26 +7,6 @@ use Behat\MinkExtension\Context\MinkContext;
  */
 class FeatureContext extends MinkContext
 {
-    private $login;
-    private $password;
-
-    public function __construct()
-    {
-        $this->login = $_ENV['CLOUDSET_USER_LOGIN'];
-        $this->password = $_ENV['CLOUDSET_USER_PASSWORD'];
-    }
-
-    /**
-     * @Given /^(?:|I )am logged in as Client$/
-     */
-    public function iAmLoggedInAsClient()
-    {
-        $this->visit('/login');
-        $this->fillField('username', $this->login);
-        $this->fillField('password', $this->password);
-        $this->pressButton('войти');
-    }
-
     /**
      * @When I follow :link in the :element element
      */
