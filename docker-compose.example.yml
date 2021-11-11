@@ -1,7 +1,7 @@
 services:
   php:
     environment:
-        # Логин для авторизации в thecloudset.com
+        # Пользователи thecloudset.com
         - >
             CLOUDSET_USERS=[
                 {
