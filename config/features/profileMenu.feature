@@ -24,5 +24,5 @@ Feature: Profile menu
     Then I should see "настройки профиля" in the ".userpage__main" element
 
   Scenario: Go to bonus program
-    When I follow "бонусная программа" in the0 "profile menu"
+    When I follow "бонусная программа" in the "profile menu"
     Then I should see "бонусная программа" in the ".userpage__main" element
