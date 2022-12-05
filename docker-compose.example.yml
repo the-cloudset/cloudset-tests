@@ -1,5 +1,5 @@
 services:
-  php:
+  node:
     environment:
         # Пользователи thecloudset.com
         - >

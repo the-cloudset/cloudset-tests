@@ -1,0 +1,25 @@
+{
+  "name": "Cloudset-cucumberjs",
+  "version": "1.0.0",
+  "description": "Cloudset cucumberjs tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatfaldog/cloudset-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fatfaldog/cloudset-tests/issues"
+  },
+  "homepage": "https://github.com/fatfaldog/cloudset-tests#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.9.0",
+    "chromedriver": "^105.0.0",
+    "selenium-webdriver": "^4.4.0"
+  }
+}
