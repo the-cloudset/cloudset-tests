@@ -23,7 +23,7 @@ Then('I fill in {string} with {string}', {timeout: 60 * 1000}, function (inputNa
 Then('I should see element with class {string}', function (jsclass) {
     assert.notEqual(driver.findElement(By.css(cssSelector)), null);
     });
-    
+
 Then('I should see {string}', function (text) {
     return driver.findElement(By.css('body')).getText().then(function (pageText) {
         assert.match(pageText, new RegExp(text));
