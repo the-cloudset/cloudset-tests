@@ -6,6 +6,6 @@ Feature: Search
   Scenario: Searching for a product that does exist
     Given I am on "/"
     Then I click on element with class "js-searchFormOpen"
-    Then I fill in "pattern" with "сапоги"
-    Then I should see "поиск: сапоги"
+    Then I fill in "pattern" with "dior"
+    Then I should see "поиск: dior"
     Then I should not see "Ничего не найдено"
