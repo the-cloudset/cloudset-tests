@@ -2,11 +2,15 @@ const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { Builder, By, until, WebDriver, Capability, Key } = require('selenium-webdriver');
 const {After, Before} = require('@cucumber/cucumber');
-
-let driver = new Builder()
-    .usingServer('http://selenium-hub:4444/wd/hub')
-    .forBrowser('chrome')
-    .build();
+let driver;
+// Asynchronous Promise
+Before(function () {
+    // Assuming this.driver is a selenium webdriver
+    driver = new Builder()
+        .usingServer('http://selenium-hub:4444/wd/hub')
+        .forBrowser('chrome')
+        .build();
+});
 
 Given('I am on {string}', {timeout: 60 * 1000}, async function (url) {
     await driver.get('https://thecloudset.com' + url);
