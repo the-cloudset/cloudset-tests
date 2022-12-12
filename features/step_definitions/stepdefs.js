@@ -10,6 +10,8 @@ Before(function () {
         .usingServer('http://selenium-hub:4444/wd/hub')
         .forBrowser('chrome')
         .build();
+
+    driver.manage().window().setRect({width: 1920, height: 1080});
 });
 
 Given('I am on {string}', {timeout: 60 * 1000}, async function (url) {
@@ -46,6 +48,7 @@ Then('I should not see {string}', function (text) {
 
 // Asynchronous Promise
 After(function () {
+  driver.actions({ async: true }).clear();
   // Assuming this.driver is a selenium webdriver
   return driver.quit();
 });
