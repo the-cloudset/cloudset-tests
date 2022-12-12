@@ -20,11 +20,15 @@ Then('I click on element with class {string}', async function (jsclass) {
     await driver.findElement(By.className(jsclass)).click();
 });
 
+Then('I click on css selector {string}', async function (cssSelector) {
+    await driver.findElement(By.css(cssSelector)).click();
+});
+
 Then('I fill in {string} with {string}', {timeout: 60 * 1000}, function (inputName, text) {
     return driver.findElement(By.name(inputName)).sendKeys(text, Key.RETURN);
 });
 
-Then('I should see element with class {string}', function (jsclass) {
+Then('I should see css selector {string}', function (cssSelector) {
     assert.notEqual(driver.findElement(By.css(cssSelector)), null);
     });
 
