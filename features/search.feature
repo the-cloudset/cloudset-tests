@@ -7,5 +7,5 @@ Feature: Search
     Given I am on "/"
     Then I click on element with class "js-searchFormOpen"
     Then I fill in "pattern" with "сапоги"
-    Then I should see "поиск: сапоги"
+    Then I should see "Поиск: сапоги" 
     Then I should not see "Ничего не найдено"
