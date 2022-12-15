@@ -6,7 +6,7 @@ Feature: Favorite
   Scenario: Adding a product to Favorite
    Given I am on "/product/krasnoe-platye-so-spushtennimi-plechami-3007"
    Then I click on css selector ".product__info .js-actionFavorite"
-   Then I should see ".product__info .js-actionFavorite.-active"
+   Then I wait element ".product__info .js-actionFavorite.-active" appear
    Then I am on "/favorite/"
-   Then I should see "красное платье со спущенными плечами"
-   Then I should not see "В избранном пока пусто"
+   Then I should see "Красное платье"
+   Then I should not see "избранном пока пусто"

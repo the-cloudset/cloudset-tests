@@ -30,9 +30,9 @@ Then('I fill in {string} with {string}', {timeout: 60 * 1000}, function (inputNa
     return driver.findElement(By.name(inputName)).sendKeys(text, Key.RETURN);
 });
 
-Then('I should see css selector {string}', function (cssSelector) {
-    assert.notEqual(driver.findElement(By.css(cssSelector)), null);
-    });
+Then('I wait element {string} appear', async function (cssSelector) {
+    await driver.wait(until.elementLocated(By.css(cssSelector)));
+});
 
 Then('I should see {string}', function (text) {
     return driver.findElement(By.css('body')).getText().then(function (pageText) {
