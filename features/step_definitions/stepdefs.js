@@ -34,6 +34,12 @@ Then('I wait element {string} appear', async function (cssSelector) {
     await driver.wait(until.elementLocated(By.css(cssSelector)));
 });
 
+Then('{string} should be = {int}', function (cssSelector, value) {
+    return driver.findElement(By.css(cssSelector)).getText().then(function (selectorText) {
+        assert.equal(selectorText, value);
+    });
+});
+
 Then('I should see {string}', function (text) {
     return driver.findElement(By.css('body')).getText().then(function (pageText) {
         assert.match(pageText, new RegExp(text));
