@@ -4,7 +4,7 @@ Feature: Check heart icon
   I need to be able to see icon
 
   Scenario: Checking heart icon
-   Given I am on "/product/krasnoe-platye-so-spushtennimi-plechami-3007"
+   Given I am on "/product/goluboe-platye-na-bretelyah-3027"
    Then I click on css selector ".product__info .js-actionFavorite"
    Then I wait element ".js-favoriteCounter" appear
    Then ".js-favoriteCounter" should be = 1
