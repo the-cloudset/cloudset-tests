@@ -40,6 +40,12 @@ Then('{string} should be = {int}', function (cssSelector, value) {
     });
 });
 
+Then('I search for {string} in element {string}' , function (text, cssSelector) {
+    return driver.findElement(By.css(cssSelector)).getText().then(function (pageText) {
+        assert.match(pageText, new RegExp(text));
+    });
+});
+
 Then('I should see {string}', function (text) {
     return driver.findElement(By.css('body')).getText().then(function (pageText) {
         assert.match(pageText, new RegExp(text));
