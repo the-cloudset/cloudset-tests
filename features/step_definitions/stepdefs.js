@@ -12,10 +12,11 @@ Before(function () {
         .build();
 
     driver.manage().window().setRect({width: 1920, height: 1080});
+
 });
 
 Given('I am on {string}', {timeout: 60 * 1000}, async function (url) {
-    await driver.get('https://thecloudset.com' + url);
+    await driver.get('https://test01.thecloudset.com' + url);
 });
 
 Then('I click on element with class {string}', async function (jsclass) {
@@ -40,7 +41,7 @@ Then('{string} should be = {int}', function (cssSelector, value) {
     });
 });
 
-Then('I search for {string} in element {string}' , function (text, cssSelector) {
+Then('I should see {string} in element {string}' , function (text, cssSelector) {
     return driver.findElement(By.css(cssSelector)).getText().then(function (pageText) {
         assert.match(pageText, new RegExp(text));
     });
