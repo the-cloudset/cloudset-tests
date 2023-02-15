@@ -4,7 +4,7 @@ Feature: Adding to cart
   I need to be able to see pop-up and count icon
 
   Scenario: Adding to cart
-   Given I am on "/product/chernaya-rubashka-s-bokovimi-razrezami-3030"
+   Given I am on "/product/chernaya-bluza-assimetrichnogo-kroya-4475"
    Then I click on css selector ".product__info .js-cartButton"
    Then I wait element ".js-cartModalOpen" appear
    Then I wait element ".js-cartCounter" appear
