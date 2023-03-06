@@ -2,6 +2,7 @@ const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { Builder, By, until, WebDriver, Capability, Key } = require('selenium-webdriver');
 const {After, Before} = require('@cucumber/cucumber');
+const { type } = require('os');
 let driver;
 // Asynchronous Promise
 Before(function () {
@@ -31,7 +32,7 @@ Then('I fill in {string} with {string}', {timeout: 60 * 1000}, function (inputNa
     return driver.findElement(By.name(inputName)).sendKeys(text, Key.RETURN);
 });
 
-Then('I wait element {string} appear', async function (cssSelector) {
+Then('I wait element {string} appear', {timeout: 60 * 1000},  async function (cssSelector) {
     await driver.wait(until.elementLocated(By.css(cssSelector)));
 });
 
@@ -45,6 +46,23 @@ Then('I should see {string} in element {string}' , function (text, cssSelector) 
     return driver.findElement(By.css(cssSelector)).getText().then(function (pageText) {
         assert.match(pageText, new RegExp(text));
     });
+});
+
+Then('I should see {string} in {string}' , function (text, parentClass) {
+    return driver.findElement(By.css(`${parentClass}`)).getText().then(function (pageText) {
+        assert.match(pageText, new RegExp(text));
+    });
+});
+
+Then('I click on the {string} with the text {string}', async function (parentClass, buttonText) {
+    await driver.manage().deleteAllCookies();
+    parent = await driver.findElement(By.css(`${parentClass}`)); 
+    button = await parent.findElement(By.xpath(`.//*[text()='${buttonText}']`));
+    //await driver.sleep(2000);
+    //button.click();
+    executor = driver;
+    executor.executeScript("arguments[0].click();", button);
+    await driver.manage().setTimeouts( {script: 5000} ); 
 });
 
 Then('I should see {string}', function (text) {
