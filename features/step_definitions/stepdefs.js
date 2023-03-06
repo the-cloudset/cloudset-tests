@@ -83,9 +83,7 @@ Then('I should not see {string}', function (text) {
 Then('I save screenshot to {string}', async function (filename) {
     await driver.takeScreenshot().then(
         function(image, err) {
-            require('fs').writeFile(`/tmp/${filename}`, image, 'base64', function(err) {
-                console.log(err);
-            });
+            require('fs').writeFile(`/tmp/${filename}`, image, 'base64', function(err) {});
         }
     );
 })
