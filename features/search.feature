@@ -7,6 +7,7 @@ Feature: Search
     Given I am on "/product/malinoviy-odnobortniy-zhaket-5257"
     Then I click on element with class "js-searchFormOpen"
     Then I fill in "query" with "сапоги"
-    Then I should see "Поиск: сапоги" 
+    Then I submit "query"
+    Then I should see "Поиск: сапоги"
     Then I should not see "Ничего не найдено"
 

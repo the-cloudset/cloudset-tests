@@ -13,7 +13,7 @@ Before(function () {
         .build();
 
     driver.manage().window().setRect({width: 1920, height: 1080});
-
+    driver.manage().deleteAllCookies();
 });
 
 Given('I am on {string}', {timeout: 60 * 1000}, async function (url) {
@@ -28,8 +28,15 @@ Then('I click on css selector {string}', async function (cssSelector) {
     await driver.findElement(By.css(cssSelector)).click();
 });
 
-Then('I fill in {string} with {string}', {timeout: 60 * 1000}, function (inputName, text) {
-    return driver.findElement(By.name(inputName)).sendKeys(text, Key.RETURN);
+Then('I fill in {string} with {string}', {timeout: 60 * 1000}, async function (inputName, text) {
+    let input = await driver.findElement(By.name(inputName));
+    await input.click();
+    await input.sendKeys(text);
+});
+
+Then('I submit {string}', {timeout: 60 * 1000}, async function (inputName) {
+    let input = await driver.findElement(By.name(inputName));
+    await input.sendKeys(Key.ENTER);
 });
 
 Then('I wait element {string} appear', {timeout: 60 * 1000},  async function (cssSelector) {
@@ -54,15 +61,11 @@ Then('I should see {string} in {string}' , function (text, parentClass) {
     });
 });
 
-Then('I click on the {string} with the text {string}', async function (parentClass, buttonText) {
-    await driver.manage().deleteAllCookies();
-    parent = await driver.findElement(By.css(`${parentClass}`)); 
+Then('I click on the {string} with the text {string}', {timeout: 60 * 1000}, async function (parentClass, buttonText) {
+    parent = await driver.findElement(By.css(`${parentClass}`));
     button = await parent.findElement(By.xpath(`.//*[text()='${buttonText}']`));
-    //await driver.sleep(2000);
-    //button.click();
-    executor = driver;
-    executor.executeScript("arguments[0].click();", button);
-    await driver.manage().setTimeouts( {script: 5000} ); 
+    await driver.wait(until.elementIsVisible(button));
+    await button.click();
 });
 
 Then('I should see {string}', function (text) {
@@ -76,6 +79,16 @@ Then('I should not see {string}', function (text) {
         assert.doesNotMatch(pageText, new RegExp(text));
     });
 });
+
+Then('I save screenshot to {string}', async function (filename) {
+    await driver.takeScreenshot().then(
+        function(image, err) {
+            require('fs').writeFile(`/tmp/${filename}`, image, 'base64', function(err) {
+                console.log(err);
+            });
+        }
+    );
+})
 
 // Asynchronous Promise
 After(function () {
