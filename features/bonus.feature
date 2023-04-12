@@ -23,8 +23,8 @@ Feature: Using bonuses of user to reduce the cost of the product
    Then I click on css selector ".js-cartModalOpen"
    Then I wait element ".js-updateCart" appear
    Then I save screenshot to "cartbonus.png"
-   Then I click on element inside ".js-updateCart" with tag "label"
+   Then I click on css selector "label[for=bonus-count]"
+   # Then I wait 5 seconds
    Then I save screenshot to "withbonus.png"
-   Then I wait for element with class "l-column -width6 u-marginBottomX025" to be visible
-   Then I should see "Bonus points" in element with class "l-column -width6 u-marginBottomX025"
+   Then I wait text "Bonus points" appear
    Then I should see "-1674" in element with class "c-amount__amount"
