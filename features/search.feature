@@ -4,8 +4,8 @@ Feature: Search
   I need to be able to search for a word
 
   Scenario: Searching for a product that does exist
-    Given I am on "/product/malinoviy-odnobortniy-zhaket-5257"
-    Then I click on element with class "js-searchFormOpen"
+    Given I am on "/product/golubaya-sumka-na-plecho-le-bambino-long-4467/"
+    Then I click on css selector ".js-searchFormOpen"
     Then I fill in "query" with "сапоги"
     Then I submit "query"
     Then I should see "Поиск: сапоги"

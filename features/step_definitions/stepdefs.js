@@ -24,6 +24,13 @@ Then('I click on element with class {string}', async function (jsclass) {
     await driver.findElement(By.className(jsclass)).click();
 });
 
+Then('I click on element inside {string} with tag {string}', async function (cssSelector, tagName) {
+    element = await driver.findElement(By.css(cssSelector));
+    switcher = await element.findElement(By.css(tagName));
+    await driver.wait(until.elementIsVisible(switcher));
+    await switcher.click();
+});
+
 Then('I click on css selector {string}', async function (cssSelector) {
     await driver.findElement(By.css(cssSelector)).click();
 });
@@ -43,6 +50,20 @@ Then('I wait element {string} appear', {timeout: 60 * 1000},  async function (cs
     await driver.wait(until.elementLocated(By.css(cssSelector)));
 });
 
+Then('I wait for element with class {string} to be visible', {timeout: 60 * 1000},  async function (className) {
+    await driver.wait(until.elementIsVisible(driver.findElemnt(By.name(className))), 5000);
+});
+
+Then('I wait element {string} with text {string} appear', {timeout: 60 * 1000},  async function (cssSelector) {
+    await driver.wait(until.elementLocated(By.css(cssSelector))).getText().then(async function (pageText) {
+        await assert.match(pageText, new RegExp(text))});
+    });
+
+Then ('I wait for {string} to be visible', {timeout: 60 * 1000},  async function (cssSelector) {
+    await driver.wait(until.elementIsVisible(driver.findElement(By.css(cssSelector))), 5000);
+});
+
+
 Then('{string} should be = {int}', async function (cssSelector, value) {
     await driver.findElement(By.css(cssSelector)).getText().then(async function (selectorText) {
         await assert.equal(selectorText, value);
@@ -61,11 +82,23 @@ Then('I should see {string} in {string}' , function (text, parentClass) {
     });
 });
 
+Then('I should see {string} in element with class {string}' , function (text, elementName) {
+    return driver.findElement(By.name(elementName)).getText().then(async function (pageText) {
+        await assert.match(pageText, new RegExp(text));
+    });
+});
+
 Then('I click on the {string} with the text {string}', {timeout: 60 * 1000}, async function (parentClass, buttonText) {
     parent = await driver.findElement(By.css(`${parentClass}`));
     button = await parent.findElement(By.xpath(`.//*[text()='${buttonText}']`));
     await driver.wait(until.elementIsVisible(button));
     await button.click();
+});
+
+Then ('I wait element with class {string} with text {string} appear', {timeout: 60 * 1000}, async function (parentClass, elementText) {
+    parent = await driver.findElement(By.css(`${parentClass}`));
+    element = await parent.findElement(By.xpath(`.//*[text()='${elementText}']`));
+    await driver.wait(until.elementIsVisible(element));
 });
 
 Then('I should see {string}', async function (text) {
