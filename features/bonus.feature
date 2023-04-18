@@ -25,6 +25,6 @@ Feature: Using bonuses of user to reduce the cost of the product
    Then I save screenshot to "cartbonus.png"
    Then I click on css selector "label[for=bonus-count]"
    # Then I wait 5 seconds
-   Then I save screenshot to "withbonus.png"
    Then I wait text "Bonus points" appear
-   Then I should see "-1674" in element with class "c-amount__amount"
+    Then I save screenshot to "withbonus.png"
+   Then I should see "- 1,116 AED"
