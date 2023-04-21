@@ -10,3 +10,4 @@ Feature: Favorite
    Then I am on "/favorite/"
    Then I should see "широкие брюки"
    Then I should not see "Your favorites is empty"
+
