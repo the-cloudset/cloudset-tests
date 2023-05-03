@@ -6,6 +6,7 @@ services:
     volumes:
         - ./.cache/:/root/.cache/
         - ./:/var/www/html
+        - ./tmp/:/tmp
     working_dir: /var/www/html
     depends_on:
       - chrome
