@@ -1,9 +1,9 @@
-Feature: Using bonuses of user to reduce the cost of the product
-  In order to check the usage of bonuses in check out
+Feature: Adding protection for the product
+  In order to check the usage of protection in check out
   As a website user
   I need to be able to see the price's change
 
-  Scenario: Using bonuses of user to reduce the cost of the product
+  Scenario: Adding protection for the product
    Given I am on "/"
    Then I click on css selector ".js-userSignin"
    Then I wait element ".js-phoneInput" appear
