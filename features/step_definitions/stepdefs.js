@@ -34,6 +34,15 @@ Then('I fill in {string} with {string}', {timeout: 60 * 1000}, async function (i
     await input.sendKeys(text);
 });
 
+Then('I fill in {string} with {string} in iframe {string}', {timeout: 60 * 1000}, async function (inputName, text, iframeSelector) {
+    let iframe = await driver.findElement(By.css(iframeSelector));
+    await driver.switchTo().frame(iframe);
+    let input = await driver.findElement(By.name(inputName));
+    await input.click();
+    await input.sendKeys(text);
+    await driver.switchTo().defaultContent();
+});
+
 Then('I submit {string}', {timeout: 60 * 1000}, async function (inputName) {
     let input = await driver.findElement(By.name(inputName));
     await input.sendKeys(Key.ENTER);
